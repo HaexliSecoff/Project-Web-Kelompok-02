@@ -1,0 +1,235 @@
+/* ===================== TEAM PAGE ===================== */
+.team-subtitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+/* --- MENTOR GRID --- */
+.mentor-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.75rem;
+  margin-bottom: 3rem;
+}
+
+/* --- ANGGOTA GRID (DIPAKSA 2-1-2) --- */
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Paksa 2 kolom pas di desktop */
+  gap: 2rem;
+  margin-bottom: 2rem;
+  max-width: 800px; /* Biar gak melar ke samping */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Trik biar kartu ke-3 (tengah) turun ke bawah dan posisinya di tengah */
+.members-grid .member-card:nth-child(3) {
+  grid-column: 1 / -1; /* Ambil 2 kolom sekaligus */
+  justify-self: center; /* Taruh di tengah */
+  width: 100%;
+  max-width: 320px;
+}
+
+/* --- KARTU UMUM --- */
+.member-card {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto; /* Biar selalu ke tengah */
+}
+
+.member-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--card-shadow);
+  border-color: var(--primary);
+}
+
+/* --- FOTO (Anti Kepotong) --- */
+.member-photo {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Kotak persegi sempurna */
+  overflow: hidden;
+  background-color: var(--bg); 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.member-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Balik ke cover, tapi karena persegi, foto lanskap/portrait aman */
+  object-position: center top; /* Fokus ke muka (atas) */
+  transition: transform 0.4s ease;
+}
+
+.member-card:hover .member-photo img {
+  transform: scale(1.05);
+}
+
+/* --- INFO SEDERHANA (Nama & Tombol) --- */
+.member-info-simple {
+  padding: 1.25rem 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.member-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+/* --- TOMBOL SELENGKAPNYA --- */
+.btn-detail {
+  background: transparent;
+  color: var(--text-soft);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  width: 100%;
+}
+
+.btn-detail:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+/* --- ROLE & TAG DI DALAM MODAL --- */
+.member-role {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 1rem;
+}
+
+.member-contrib {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.contrib-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(243, 106, 56, 0.1);
+  color: var(--primary);
+  border: 1px solid rgba(243, 106, 56, 0.2);
+}
+
+/* ===================== MODAL POPUP (AESTHETIC) ===================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  max-width: 480px;
+  width: 100%;
+  position: relative;
+  transform: translateY(20px) scale(0.95);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal-overlay.active .modal-content {
+  transform: translateY(0) scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text-soft);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.modal-close:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.modal-body p {
+  color: var(--text-soft);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* ===================== RESPONSIVE TEAM ===================== */
+@media (max-width: 768px) {
+  /* Di HP, ubah jadi 1 kolom */
+  .members-grid {
+    grid-template-columns: 1fr; 
+  }
+  
+  /* Reset posisi kartu ke-3 biar gak aneh */
+  .members-grid .member-card:nth-child(3) {
+    grid-column: auto;
+    max-width: 100%;
+  }
+  
+  .member-card {
+    max-width: 100%; /* Kartu penuh di HP */
+  }
+  
+  .modal-content {
+    padding: 2rem 1.5rem;
+  }
+}
