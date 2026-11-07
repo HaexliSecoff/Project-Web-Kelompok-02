@@ -66,13 +66,13 @@ KELASIK/
 1. Clone repository:
 
    ```bash
-   git clone https://github.com/HaexliSecoff/Prototype-Web-Kelompok-2-Kelasik.git
+   git clone https://github.com/HaexliSecoff/Project-Web-Kelompok-2-Kelasik.git
    ```
 
 2. Masuk ke direktori proyek:
 
    ```bash
-   cd Prototype-Web-Kelompok-2-Kelasik
+   cd Project-Web-Kelompok-2-Kelasik
    ```
 
 3. Buka file `index.html` menggunakan browser.
